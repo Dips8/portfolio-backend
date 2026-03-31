@@ -1,0 +1,21 @@
+<button onclick="sendMail()">Send Test Email</button>
+
+<script>
+function sendMail() {
+  fetch("http://localhost:5000/send-mail", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      email: "YOUR_EMAIL@gmail.com",
+      payment_id: "TEST123"
+    })
+  })
+  .then(res => res.text())
+  .then(data => alert(data));
+}
+</script>
+
+</body>
+</html>
