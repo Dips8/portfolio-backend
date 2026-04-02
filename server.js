@@ -3,7 +3,9 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://dips8.github.io"
+}));
 app.use(express.json());
 
 const transporter = nodemailer.createTransport({
