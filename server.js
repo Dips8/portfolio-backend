@@ -6,7 +6,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ Create transporter ONCE
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -17,15 +16,18 @@ const transporter = nodemailer.createTransport({
 
 app.post("/send-mail", async (req, res) => {
   try {
-    const { email, payment_id } = req.body;
+    const { name, email, message } = req.body;
+
+    console.log("Request:", req.body); // debug
 
     const mailOptions = {
       from: "dipakmadwani1234@gmail.com",
       to: "dipakmadwani1234@gmail.com",
       subject: "New Contact Form Message",
       text: `
+Name: ${name}
 Email: ${email}
-Message: ${payment_id}
+Message: ${message}
       `,
     };
 
